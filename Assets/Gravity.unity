@@ -350,7 +350,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14448b0509e69c34a8296b88e9decffc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -466,8 +466,9 @@ GameObject:
   - 23: {fileID: 421237557}
   - 54: {fileID: 421237556}
   - 114: {fileID: 421237561}
+  - 114: {fileID: 421237562}
   m_Layer: 0
-  m_Name: FallingCube
+  m_Name: GravMars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,12 +482,12 @@ Rigidbody:
   m_GameObject: {fileID: 421237555}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_Drag: .5
+  m_AngularDrag: .5
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!23 &421237557
 Renderer:
@@ -535,7 +536,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 421237555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.19999981, z: -6.55259895}
+  m_LocalPosition: {x: 0, y: 4, z: -6.55259895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -551,6 +552,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentage: .379999995
+--- !u!114 &421237562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421237555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6672763c20f945498a1640705b21667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HOVER_FORCE: 30
+  HoverHeight: 2
+  DampingFactor: .200000003
 --- !u!1 &463830080
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,8 +748,9 @@ GameObject:
   - 23: {fileID: 554125996}
   - 54: {fileID: 554125995}
   - 114: {fileID: 554126000}
+  - 114: {fileID: 554126001}
   m_Layer: 0
-  m_Name: FallingCube
+  m_Name: GravEarth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -748,12 +764,12 @@ Rigidbody:
   m_GameObject: {fileID: 554125994}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_Drag: .5
+  m_AngularDrag: .5
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!23 &554125996
 Renderer:
@@ -802,7 +818,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 554125994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.86415863, y: 4.19999981, z: -6.55259895}
+  m_LocalPosition: {x: -1.86415863, y: 4, z: -6.55259895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -818,6 +834,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentage: 1
+--- !u!114 &554126001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554125994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6672763c20f945498a1640705b21667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HOVER_FORCE: 30
+  HoverHeight: 2
+  DampingFactor: .200000003
 --- !u!1 &583401415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1321,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14448b0509e69c34a8296b88e9decffc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2171,7 +2201,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14448b0509e69c34a8296b88e9decffc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -2447,7 +2477,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14448b0509e69c34a8296b88e9decffc, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

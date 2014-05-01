@@ -3,23 +3,26 @@ using System.Collections;
 
 public class VehicleController : MonoBehaviour {
 
-	public float speed;
+	public float Speed;
 	public float THRUST_FORCE;
 
+	public bool ResetPos;
 
 
 	public ParticleSystem leftThruster;
 	public ParticleSystem rightThruster;
 
 	Vector3 originalPos;
+	Quaternion originalRotation;
 	void Awake(){
 		originalPos = transform.position;
+		originalRotation = transform.rotation;
 	}
 	// Use this for initialization
 	void Start () {
 		//temp code
 		renderer.material.color = Color.blue;
-		rigidbody.velocity = transform.forward * speed;
+		rigidbody.velocity = transform.forward * Speed;
 	}
 
 	bool goLeft = false;
@@ -46,13 +49,21 @@ public class VehicleController : MonoBehaviour {
 			leftThruster.Stop();
 		}
 
-		/*if(transform.position.z > 60)
-			transform.position = originalPos;
-		*/
+		if(Input.GetButtonDown("Jump")){
+			JumpThrust();
+		}
+
+		if(ResetPos){
+			if(transform.position.z > 60){
+				transform.position = originalPos;
+				transform.rotation = originalRotation;
+			}
+		}
 	}
 
 	void FixedUpdate()
 	{
+
 		//Note you can use both thrusters at once.
 		if(goLeft){
 			ApplyThrust(-1f);
@@ -71,10 +82,15 @@ public class VehicleController : MonoBehaviour {
 		rigidbody.AddForce(transform.right * direction * THRUST_FORCE);
 	}
 
+	private void JumpThrust(){
+		rigidbody.AddForce(Vector3.up * THRUST_FORCE * 20f);
+	}
+
+
 
 	private void MoveForward(){
 		Vector3 desiredVelocity = rigidbody.velocity;
-		desiredVelocity.z = speed;
+		desiredVelocity.z = Speed;
 		rigidbody.velocity = desiredVelocity;
 		//rigidbody.AddForce(transform.forward * speed, ForceMode.VelocityChange);
 	}

@@ -14,6 +14,7 @@ public class Gravity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		rigidbody.AddForce(-Vector3.up * Physics.gravity.magnitude *  percentage);
+		//Argument taken as distance/time^2
+		rigidbody.AddForce(-Vector3.up * EARTH_GRAVITY *  percentage, ForceMode.Acceleration);
 	}
 }
