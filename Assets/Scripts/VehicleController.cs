@@ -46,7 +46,7 @@ public class VehicleController : MonoBehaviour {
 			leftThruster.Stop();
 		}
 
-		/*if(transform.position.z > 37)
+		/*if(transform.position.z > 60)
 			transform.position = originalPos;
 		*/
 	}
@@ -76,5 +76,6 @@ public class VehicleController : MonoBehaviour {
 		Vector3 desiredVelocity = rigidbody.velocity;
 		desiredVelocity.z = speed;
 		rigidbody.velocity = desiredVelocity;
+		//rigidbody.AddForce(transform.forward * speed, ForceMode.VelocityChange);
 	}
 }
