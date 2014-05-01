@@ -18,7 +18,7 @@ public class VehicleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//temp code
-		renderer.material.color = Color.magenta;
+		renderer.material.color = Color.blue;
 		rigidbody.velocity = transform.forward * speed;
 	}
 
@@ -46,8 +46,9 @@ public class VehicleController : MonoBehaviour {
 			leftThruster.Stop();
 		}
 
-		if(transform.position.z > 37)
+		/*if(transform.position.z > 37)
 			transform.position = originalPos;
+		*/
 	}
 
 	void FixedUpdate()
