@@ -132,7 +132,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 96
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!64 &6400000
 MeshCollider:
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 10
   THRUST_FORCE: 30
-  ResetPos: 0
+  ResetPos: 1
   leftThruster: {fileID: 19800000}
   rightThruster: {fileID: 19800002}
 --- !u!114 &11400002
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109bdd0a5effc3647ad6a24deb836102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentage: 1
+  percentage: .800000012
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +189,9 @@ MonoBehaviour:
   HOVER_FORCE: 60
   HoverHeight: 1
   DampingFactor: .200000003
+  slerpRateSurface: 4
+  slerpRateStabilize: 1
+  AutoRotate: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
