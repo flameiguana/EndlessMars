@@ -51,6 +51,4 @@ public class Hover : MonoBehaviour {
 		if(AutoRotate)
 			transform.up = Vector3.Slerp(transform.up, targetUp, Time.deltaTime * slerpRate);
 	}
-
-
 }

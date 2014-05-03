@@ -4,13 +4,14 @@ using System.Collections;
 public class VehicleController : MonoBehaviour {
 
 	public float Speed;
-	public float THRUST_FORCE;
+	public float THRUST_FORCE = 30f;
 
 	public bool ResetPos;
 
 
 	public ParticleSystem leftThruster;
 	public ParticleSystem rightThruster;
+	public ParticleSystem topThurster;
 
 	Vector3 originalPos;
 	Quaternion originalRotation;
@@ -27,6 +28,7 @@ public class VehicleController : MonoBehaviour {
 
 	bool goLeft = false;
 	bool goRight = false;
+	bool goDown = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -49,8 +51,17 @@ public class VehicleController : MonoBehaviour {
 			leftThruster.Stop();
 		}
 
+		if(Input.GetButtonDown("Down")){
+			goDown = true;
+			topThurster.Play();
+		}
+		else if(Input.GetButtonUp("Down")){
+			goDown = false;
+			topThurster.Stop();
+		}
+
 		if(Input.GetButtonDown("Jump")){
-			JumpThrust();
+			ApplyThrust(transform.up, THRUST_FORCE * 20f);
 		}
 
 		if(ResetPos){
@@ -66,11 +77,16 @@ public class VehicleController : MonoBehaviour {
 
 		//Note you can use both thrusters at once.
 		if(goLeft){
-			ApplyThrust(-1f);
+			ApplyThrust(transform.right * -1f, THRUST_FORCE);
 		}
 		
 		if(goRight){
-			ApplyThrust(1f);
+			ApplyThrust(transform.right, THRUST_FORCE);
+		}
+
+		if(goDown)
+		{
+			ApplyThrust(transform.up * -1f, THRUST_FORCE);
 		}
 		//Moves the body forward regardless of other factors.
 		MoveForward();
@@ -78,15 +94,9 @@ public class VehicleController : MonoBehaviour {
 
 
 	//Applies a force. Adds up if button is held.
-	private void ApplyThrust(float direction){
-		rigidbody.AddForce(transform.right * direction * THRUST_FORCE);
+	private void ApplyThrust(Vector3 direction, float THRUST){
+		rigidbody.AddForce(direction * THRUST);
 	}
-
-	private void JumpThrust(){
-		rigidbody.AddForce(Vector3.up * THRUST_FORCE * 20f);
-	}
-
-
 
 	private void MoveForward(){
 		Vector3 desiredVelocity = rigidbody.velocity;
