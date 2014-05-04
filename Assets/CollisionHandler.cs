@@ -27,7 +27,7 @@ public class CollisionHandler : MonoBehaviour {
 
             if (xDistance <= (width / 4.0f)) 
             {
-               // Destroy(gameObject);
+                Destroy(gameObject);
             }
 
             EnvironmentManager.instance.obstacleList.Remove(other.gameObject);

@@ -5,7 +5,7 @@ public class VehicleController : MonoBehaviour {
 
 	public float Speed;
 	public float THRUST_FORCE = 30f;
-
+	public bool UseThrust;
 	public bool ResetPos;
 
 
@@ -39,18 +39,19 @@ public class VehicleController : MonoBehaviour {
 			//To go left use right thruster and vice versa
 			rightThruster.Play();
 		}
-		/*else if(Input.GetButtonUp("Left")){
+
+		else if(UseThrust && Input.GetButtonUp("Left")){
 			goLeft = false;
 			rightThruster.Stop();
-		}*/
+		}
 		if(Input.GetButtonDown("Right")){
 			goRight = true;
 			leftThruster.Play();
 		}
-		/*else if(Input.GetButtonUp("Right")){
+		else if(UseThrust && Input.GetButtonUp("Right")){
 			goRight = false;
 			leftThruster.Stop();
-		}*/
+		}
 
 		if(Input.GetButtonDown("Down")){
 			goDown = true;
@@ -65,18 +66,20 @@ public class VehicleController : MonoBehaviour {
 			ApplyThrust(transform.up, THRUST_FORCE * 20f);
 		}
 
-        if (transform.position.x > EnvironmentManager.instance.targetLane) 
-        {
-            transform.position = new Vector3(transform.position.x -.5f, transform.position.y, transform.position.z);
-            
-            rightThruster.Stop();
-        }
-        if (transform.position.x < EnvironmentManager.instance.targetLane)
-        {
-            transform.position = new Vector3(transform.position.x + .5f, transform.position.y, transform.position.z);
-            
-            leftThruster.Stop();
-        }
+		if(!UseThrust){
+			if (transform.position.x > EnvironmentManager.instance.targetLane) 
+			{
+				transform.position = new Vector3(transform.position.x -.5f, transform.position.y, transform.position.z);
+				
+				rightThruster.Stop();
+			}
+			if (transform.position.x < EnvironmentManager.instance.targetLane)
+			{
+				transform.position = new Vector3(transform.position.x + .5f, transform.position.y, transform.position.z);
+				
+				leftThruster.Stop();
+			}
+		}
 
 
 		if(ResetPos){
@@ -92,17 +95,28 @@ public class VehicleController : MonoBehaviour {
 
 		//Note you can use both thrusters at once.
 		if(goLeft){
-            EnvironmentManager.instance.targetLane = (int)EnvironmentManager.instance.targetLane - 1;
-            Debug.Log("TargetLane: " + EnvironmentManager.instance.targetLane);
-            goLeft = false;
-			//ApplyThrust(transform.right * -1f, THRUST_FORCE);
+			if(UseThrust){
+				ApplyThrust(transform.right * -1f, THRUST_FORCE);
+			}
+			else {
+				EnvironmentManager.instance.targetLane = (int)EnvironmentManager.instance.targetLane - 1;
+				Debug.Log("TargetLane: " + EnvironmentManager.instance.targetLane);
+				goLeft = false;
+			}
+
 		}
 		
 		if(goRight){
-            EnvironmentManager.instance.targetLane = (int)EnvironmentManager.instance.targetLane + 1;
-            goRight = false;
-            Debug.Log("TargetLane: " + EnvironmentManager.instance.targetLane);
-			//ApplyThrust(transform.right, THRUST_FORCE);
+			if(UseThrust){
+				ApplyThrust(transform.right, THRUST_FORCE);
+			}
+			else {
+				EnvironmentManager.instance.targetLane = (int)EnvironmentManager.instance.targetLane + 1;
+				goRight = false;
+				Debug.Log("TargetLane: " + EnvironmentManager.instance.targetLane);
+			}
+
+
 		}
 
 		if(goDown)
