@@ -22,7 +22,7 @@ public class VehicleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//temp code
-		renderer.material.color = Color.blue;
+		renderer.material.color = Color.red;
 		rigidbody.velocity = transform.forward * Speed;
 	}
 
@@ -32,24 +32,25 @@ public class VehicleController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        Speed += 0.01f;
 		//Change thruster state based on input.
 		if(Input.GetButtonDown("Left")){
 			goLeft = true; 
 			//To go left use right thruster and vice versa
 			rightThruster.Play();
 		}
-		else if(Input.GetButtonUp("Left")){
+		/*else if(Input.GetButtonUp("Left")){
 			goLeft = false;
 			rightThruster.Stop();
-		}
+		}*/
 		if(Input.GetButtonDown("Right")){
 			goRight = true;
 			leftThruster.Play();
 		}
-		else if(Input.GetButtonUp("Right")){
+		/*else if(Input.GetButtonUp("Right")){
 			goRight = false;
 			leftThruster.Stop();
-		}
+		}*/
 
 		if(Input.GetButtonDown("Down")){
 			goDown = true;
@@ -64,6 +65,20 @@ public class VehicleController : MonoBehaviour {
 			ApplyThrust(transform.up, THRUST_FORCE * 20f);
 		}
 
+        if (transform.position.x > EnvironmentManager.instance.targetLane) 
+        {
+            transform.position = new Vector3(transform.position.x -.5f, transform.position.y, transform.position.z);
+            
+            rightThruster.Stop();
+        }
+        if (transform.position.x < EnvironmentManager.instance.targetLane)
+        {
+            transform.position = new Vector3(transform.position.x + .5f, transform.position.y, transform.position.z);
+            
+            leftThruster.Stop();
+        }
+
+
 		if(ResetPos){
 			if(transform.position.z > 60){
 				transform.position = originalPos;
@@ -77,11 +92,17 @@ public class VehicleController : MonoBehaviour {
 
 		//Note you can use both thrusters at once.
 		if(goLeft){
-			ApplyThrust(transform.right * -1f, THRUST_FORCE);
+            EnvironmentManager.instance.targetLane = (int)EnvironmentManager.instance.targetLane - 1;
+            Debug.Log("TargetLane: " + EnvironmentManager.instance.targetLane);
+            goLeft = false;
+			//ApplyThrust(transform.right * -1f, THRUST_FORCE);
 		}
 		
 		if(goRight){
-			ApplyThrust(transform.right, THRUST_FORCE);
+            EnvironmentManager.instance.targetLane = (int)EnvironmentManager.instance.targetLane + 1;
+            goRight = false;
+            Debug.Log("TargetLane: " + EnvironmentManager.instance.targetLane);
+			//ApplyThrust(transform.right, THRUST_FORCE);
 		}
 
 		if(goDown)
