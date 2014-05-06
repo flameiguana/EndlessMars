@@ -62,9 +62,9 @@ public class VehicleController : MonoBehaviour {
 			topThurster.Stop();
 		}
 
-		if(Input.GetButtonDown("Jump")){
+		/*if(Input.GetButtonDown("Jump")){
 			ApplyThrust(transform.up, THRUST_FORCE * 20f);
-		}
+		}*/
 
 		if(!UseThrust){
 			if (transform.position.x > EnvironmentManager.instance.targetLane) 
