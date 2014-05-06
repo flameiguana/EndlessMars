@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3300000}
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Obstacle
+  m_Layer: 8
+  m_Name: Ramp
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,9 +24,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 3, z: 2}
+  m_LocalRotation: {x: -.154245675, y: 0, z: 0, w: .988032579}
+  m_LocalPosition: {x: 2.48371387, y: 1.2074995, z: 25.175806}
+  m_LocalScale: {x: 3, y: .917105675, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -41,7 +41,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 14448b0509e69c34a8296b88e9decffc, type: 2}
+  - {fileID: 2100000, guid: 2f275dcda49e03e42a1bfae9b575f68e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -63,7 +63,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ccdfd4bd15bd274408a21cf5bdc76ffc, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

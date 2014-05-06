@@ -22,6 +22,6 @@ public class PlayerStats : MonoBehaviour {
 	void Update () 
     {
         currentDistance = (int)player.transform.position.z;
-        playerScore.text = "Metres: " + currentDistance.ToString();
+        playerScore.text = "Meters: " + currentDistance.ToString();
 	}
 }
