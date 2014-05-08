@@ -27,6 +27,10 @@ public class EnvironmentManager : MonoBehaviour
     public List<GameObject> rampList = new List<GameObject>();
     public GameObject ramp;
 
+    public List<GameObject> crossBeam = new List<GameObject>();
+    public GameObject beam;
+
+
 
     public static EnvironmentManager s_instance = null;
     public static EnvironmentManager instance
@@ -48,7 +52,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             float horX = Random.Range(-5, 6);
             horX = horX * 2;
-            int scaleY = Random.Range(2, 5);
+            int scaleY = Random.Range(2, 13);
             obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, i * 10), transform.rotation));
             obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
         }
@@ -69,6 +73,22 @@ public class EnvironmentManager : MonoBehaviour
             rampList.Add((GameObject)Instantiate(ramp, new Vector3(horX, 0, i * 200), ramp.transform.rotation));
         }
 
+        for (int i = 1; i <= 10; i++)
+        {
+            int side = Random.Range(0, 2);
+            float Xpos = 0;
+            if (side == 0)
+            {
+                Xpos = -12;
+            }
+            else 
+            {
+                Xpos = 12;
+            }
+            float horY = Random.Range(5, 10);
+            crossBeam.Add((GameObject)Instantiate(beam, new Vector3(Xpos, horY, i * 50), beam.transform.rotation));
+        }
+
 
 
     }
@@ -84,6 +104,32 @@ public class EnvironmentManager : MonoBehaviour
                 Destroy(obstacleList[i]);
                 obstacleList.Remove(obstacleList[i]);
                 CreateObstacle();
+                //obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        for (int i = 0; i < crossBeam.Count; i++)
+        {
+            if (player.transform.position.z - OFFSET > crossBeam[i].transform.position.z)
+            {
+                Destroy(crossBeam[i]);
+                crossBeam.Remove(crossBeam[i]);
+                int side = Random.Range(0, 2);
+                float Xpos = 0;
+                if (side == 0)
+                {
+                    Xpos = -12;
+                }
+                else
+                {
+                    Xpos = 12;
+                }
+                float horY = Random.Range(5, 15);
+                crossBeam.Add((GameObject)Instantiate(beam, new Vector3(Xpos, horY, player.transform.position.z + 500), beam.transform.rotation));
                 //obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
             }
             else
@@ -146,7 +192,7 @@ public class EnvironmentManager : MonoBehaviour
     {
         float horX = Random.Range(-5, 6);
         horX = horX * 2;
-        float scaleY = Random.Range(2, 5);
+        float scaleY = Random.Range(2, 10);
         obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, player.transform.position.z + 400), transform.rotation));
         obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
     }
