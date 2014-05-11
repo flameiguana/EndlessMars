@@ -3,10 +3,10 @@ using System.Collections;
 
 public class CollisionHandler : MonoBehaviour
 {
+	
 
-    public GameObject player;
-
-
+	public bool shielded;
+	Shield currentShield;
     // Use this for initialization
     void Start()
     {
@@ -17,6 +17,12 @@ public class CollisionHandler : MonoBehaviour
     {
 
     }
+	public void GiveShield(Shield shield){
+		shield.transform.parent = transform;
+		shield.transform.localPosition = Vector3.zero;
+		currentShield = shield;
+		shielded = true;
+	}
 
     void OnCollisionEnter(Collision other)
     {
@@ -28,16 +34,23 @@ public class CollisionHandler : MonoBehaviour
 
             //if (xDistance <= (width / 4.0f)) 
             //{
-            Destroy(gameObject);
 
+			EnvironmentManager.instance.obstacleList.Remove(other.gameObject);
+			Destroy(other.gameObject);
+			EnvironmentManager.instance.CreateObstacle();
+
+			if(!shielded){
+				Application.LoadLevel(Application.loadedLevel);
+				Destroy(gameObject);
+			}
+			else {
+				Destroy (currentShield.gameObject);
+				shielded = false;
+				currentShield = null;
+			}
             //}
-
-            EnvironmentManager.instance.obstacleList.Remove(other.gameObject);
-            Destroy(other.gameObject);
-            EnvironmentManager.instance.CreateObstacle();
-
             //yield WaitForSeconds(5.0);
-            Application.LoadLevel(Application.loadedLevel);
+           
 
         }
 
