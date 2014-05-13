@@ -19,11 +19,9 @@ public class VehicleController : MonoBehaviour {
 		originalPos = transform.position;
 		originalRotation = transform.rotation;
 	}
-	// Use this for initialization
 	void Start () {
-		//temp code
-		renderer.material.color = Color.red;
 		rigidbody.velocity = transform.forward * Speed;
+		Input.ResetInputAxes();
 	}
 
 	bool goLeft = false;
@@ -31,33 +29,40 @@ public class VehicleController : MonoBehaviour {
 	bool goDown = false;
 
 	// Update is called once per frame
+	
 	void Update () {
+
         Speed += 0.01f;
 		//Change thruster state based on input.
-		if(Input.GetButtonDown("Left")){
-			goLeft = true; 
-			//To go left use right thruster and vice versa
-			rightThruster.Play();
+		if(Input.GetButton("Left")){
+			if(!goLeft){
+				goLeft = true; 
+				//To go left use right thruster and vice versa
+				rightThruster.Play();
+			}
 		}
-
-		else if(UseThrust && Input.GetButtonUp("Left")){
+		else if(UseThrust && goLeft){
 			goLeft = false;
 			rightThruster.Stop();
 		}
-		if(Input.GetButtonDown("Right")){
-			goRight = true;
-			leftThruster.Play();
+		if(Input.GetButton("Right")){
+			if(!goRight){
+				goRight = true;
+				leftThruster.Play();
+			}
 		}
-		else if(UseThrust && Input.GetButtonUp("Right")){
+		else if(UseThrust && goRight){
 			goRight = false;
 			leftThruster.Stop();
 		}
 
-		if(Input.GetButtonDown("Down")){
-			goDown = true;
-			topThurster.Play();
+		if(Input.GetButton("Down")){
+			if(!goDown){
+				goDown = true;
+				topThurster.Play();
+			}
 		}
-		else if(Input.GetButtonUp("Down")){
+		else if(goDown){
 			goDown = false;
 			topThurster.Stop();
 		}
