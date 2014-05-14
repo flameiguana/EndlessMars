@@ -33,7 +33,7 @@ public class EnvironmentManager : MonoBehaviour
     public List<GameObject> crossBeam = new List<GameObject>();
     public GameObject beam;
 
-
+    int spawnRamp;
 
     public static EnvironmentManager s_instance = null;
     public static EnvironmentManager instance
@@ -60,8 +60,9 @@ public class EnvironmentManager : MonoBehaviour
             obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
         }*/
 
+        spawnRamp = 0;
 
-		for (int i = 10; i <= STARTCOUNT; i++)
+		for (int i = 10; i < STARTCOUNT; i++)
 		{
 			float horX = Random.Range(-5, 6);
 			horX = horX * 2;
@@ -124,20 +125,36 @@ public class EnvironmentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
         //Obstacles
         for (int i = 0; i < obstacleList.Count; i++)
         {
             if (player.transform.position.z - OFFSET > obstacleList[i].transform.position.z)
             {
-                Destroy(obstacleList[i]);
+                //spawnRamp++;
+                //Destroy(obstacleList[i]);
+                float horX = Random.Range(-5, 6);
+                horX = horX * 2;
+                GameObject temp = obstacleList[i];
                 obstacleList.Remove(obstacleList[i]);
-                CreateObstacle();
+                temp.transform.position = new Vector3(horX, temp.transform.position.y, temp.transform.position.z + 800);
+                float scaleY = Random.Range(1, 5);
+                scaleY = player.transform.position.z / 800 + Random.Range(5, 3);
+                temp.transform.localScale = new Vector3(2, scaleY, 2);
+                obstacleList.Add(temp);
+                
+                //CreateObstacle();
                 //obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
             }
             else
             {
                 break;
             }
+
+            
+
         }
 
 		//Ramps
@@ -145,10 +162,12 @@ public class EnvironmentManager : MonoBehaviour
 		{
 			if (player.transform.position.z - OFFSET > rampList[i].transform.position.z)
 			{
-				Destroy(rampList[i]);
-				rampList.Remove(rampList[i]);
-				CreateRamp();
-				//obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
+                float horX = Random.Range(-5, 6);
+                horX = horX * 2;
+                GameObject temp = rampList[i];
+                rampList.Remove(rampList[i]);
+                temp.transform.position = new Vector3(horX, temp.transform.position.y, temp.transform.position.z + 800);
+                rampList.Add(temp);
 			}
 			else
 			{
@@ -239,7 +258,7 @@ public class EnvironmentManager : MonoBehaviour
         horX = horX * 2;
         float scaleY = Random.Range(1, 5);
 		scaleY = player.transform.position.z / 1000 + Random.Range (1, 3);
-        obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, player.transform.position.z + 800), transform.rotation));
+        obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, (int)player.transform.position.z + 800), transform.rotation));
         obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
     }
 }
