@@ -37,8 +37,6 @@ public class EnvironmentManager : MonoBehaviour
     {
         get
         {
-            if (s_instance == null)
-                Debug.LogError("uh.....oh shit don't exist!");
             return s_instance;
         }
     }

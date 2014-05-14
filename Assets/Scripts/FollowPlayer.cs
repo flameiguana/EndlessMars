@@ -31,11 +31,14 @@ public class FollowPlayer : MonoBehaviour {
 	}
 
 	public float Distance;
+	public float YOffset;
+	Vector3 OffSetVector;
 	public float XRotation;
 
 	void Start(){
 		if(target != null)
 			transform.LookAt(target);
+		OffSetVector.y = YOffset;
 	}
 
 
@@ -64,6 +67,7 @@ public class FollowPlayer : MonoBehaviour {
 				desiredPosition.z = target.position.z - Distance;
 				transform.position = desiredPosition;
 				transform.LookAt(target);
+
 				break;
 			}
 
@@ -72,6 +76,7 @@ public class FollowPlayer : MonoBehaviour {
 				desiredPosition = PositionAboutTarget(target.position, XRotation, Distance);
 				transform.position = desiredPosition;
 				transform.LookAt(target);
+				transform.position += OffSetVector;
 				break;
 			}
 		}
