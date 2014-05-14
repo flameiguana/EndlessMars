@@ -32,9 +32,6 @@ public class CollisionHandler : MonoBehaviour
             float xDistance = Mathf.Abs(transform.position.x - other.transform.position.x);
             float width = other.gameObject.renderer.bounds.size.x;
 
-            //if (xDistance <= (width / 4.0f)) 
-            //{
-
 			EnvironmentManager.instance.obstacleList.Remove(other.gameObject);
 			Destroy(other.gameObject);
 			EnvironmentManager.instance.CreateObstacle();
@@ -48,11 +45,27 @@ public class CollisionHandler : MonoBehaviour
 				shielded = false;
 				currentShield = null;
 			}
-            //}
-            //yield WaitForSeconds(5.0);
-           
-
         }
+
+		if (other.gameObject.tag == "CrossBeam")
+		{
+			float xDistance = Mathf.Abs(transform.position.x - other.transform.position.x);
+			float width = other.gameObject.renderer.bounds.size.x;
+
+			EnvironmentManager.instance.crossBeam.Remove(other.gameObject);
+			Destroy(other.gameObject);
+			EnvironmentManager.instance.CreateObstacle();
+			
+			if(!shielded){
+				Application.LoadLevel(Application.loadedLevel);
+				Destroy(gameObject);
+			}
+			else {
+				Destroy (currentShield.gameObject);
+				shielded = false;
+				currentShield = null;
+			}
+		}
 
     }
 }
