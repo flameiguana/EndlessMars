@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Shield : MonoBehaviour {
 
+    public AudioSource powerUp;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,6 +18,7 @@ public class Shield : MonoBehaviour {
 	void OnTriggerEnter(Collider collider){
 		if(collider.tag == "Player"){
 			collider.gameObject.GetComponent<CollisionHandler>().GiveShield(this);
+            powerUp.Play();
 		}
 	}
 }
