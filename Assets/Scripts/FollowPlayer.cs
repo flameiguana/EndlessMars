@@ -46,6 +46,7 @@ public class FollowPlayer : MonoBehaviour {
 
 		if(target == null){
 			Debug.LogError("Target not set");
+			this.enabled = false;
 			return;
 		}
 

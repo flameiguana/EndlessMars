@@ -6,12 +6,18 @@ public class GameManager : MonoBehaviour {
 
 	public UIPanel gameOverPanel;
 	public UIPanel PausePanel;
+	public UILabel BestDistance;
+	public UILabel CurrentDistance;
+	public GameObject ScoringPrefab;
 
 	bool gameOver = false;
 	bool paused = false;
 
 	void Start(){
 		PausePanel.gameObject.SetActive(false);
+		if(ScoreManager.instance == null){
+			Instantiate(ScoringPrefab, Vector3.zero, Quaternion.identity);
+		}
 	}
 
 	void OnEnable(){
@@ -25,8 +31,14 @@ public class GameManager : MonoBehaviour {
 	void HandleDeath(GameObject gameObject){
 		Destroy(gameObject);
 		gameOver = true;
+		EnvironmentManager.instance.enabled = false;
+
+		BestDistance.text = ScoreManager.instance.bestScore.ToString();
+		CurrentDistance.text = ScoreManager.instance.currentScore.ToString();
+
 		gameOverPanel.gameObject.SetActive(true);
 	}
+
 
 	void Restart(){
 		Application.LoadLevel(Application.loadedLevel);

@@ -21,7 +21,8 @@ public class PlayerStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        currentDistance = (int)player.transform.position.z;
-        playerScore.text = "Meters: " + currentDistance.ToString();
+        currentDistance = player.transform.position.z;
+		ScoreManager.instance.UpdateScore(currentDistance);
+		playerScore.text = "Meters: " + ((int)currentDistance).ToString();
 	}
 }
