@@ -6,13 +6,21 @@ public class CollisionHandler : MonoBehaviour
 	public bool shielded;
 	Shield currentShield;
     public GameObject explosion;
+    public AudioSource shieldPowerDown;
 
 
 	public void GiveShield(Shield shield){
-		shield.transform.parent = transform;
-		shield.transform.localPosition = Vector3.zero;
-		currentShield = shield;
-		shielded = true;
+        if (!shielded)
+        {
+            shield.transform.parent = transform;
+            shield.transform.localPosition = Vector3.zero;
+            currentShield = shield;
+            shielded = true;
+        }
+        else
+        {
+            Destroy(shield);
+        }
 	}
 
 	public delegate void DieAction(GameObject gameObject);
@@ -42,6 +50,7 @@ public class CollisionHandler : MonoBehaviour
 			}
 			else {
 				Destroy (currentShield.gameObject);
+                shieldPowerDown.Play();
 				shielded = false;
 				currentShield = null;
 			}
@@ -62,6 +71,7 @@ public class CollisionHandler : MonoBehaviour
 				}
 			}
 			else {
+                shieldPowerDown.Play();
 				Destroy (currentShield.gameObject);
 				shielded = false;
 				currentShield = null;

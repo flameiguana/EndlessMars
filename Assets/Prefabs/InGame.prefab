@@ -41,6 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   obstacle1: {fileID: 100000, guid: b0e5dc0b0db3a63439666af79efd83bb, type: 2}
+  shield: {fileID: 100000, guid: 338080a61540d434a92b1de776b7f906, type: 2}
   obstaclesAndRamps: []
   obstacleList: []
   wallList: []

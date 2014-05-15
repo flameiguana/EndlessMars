@@ -13,7 +13,8 @@ public class VehicleController : MonoBehaviour {
     public ParticleSystem leftFrontThruster;
     public ParticleSystem rightFrontThruster;
 	public ParticleSystem rightThruster;
-	public ParticleSystem topThurster;
+    public ParticleSystem topThurster;
+    public ParticleSystem backThurster;
 
 	Vector3 originalPos;
 	Quaternion originalRotation;
@@ -29,12 +30,13 @@ public class VehicleController : MonoBehaviour {
 	bool goLeft = false;
 	bool goRight = false;
 	bool goDown = false;
+    bool goForward = false;
 
 	// Update is called once per frame
 	
 	void Update () {
 
-        Speed += Time.deltaTime * 0.5f;
+        Speed += Time.deltaTime * 0.35f;
 		//Change thruster state based on input.
 		if(Input.GetButton("Left")){
 			if(!goLeft){
@@ -67,12 +69,35 @@ public class VehicleController : MonoBehaviour {
 			if(!goDown){
 				goDown = true;
 				topThurster.Play();
-			}
+            }
 		}
 		else if(goDown){
 			goDown = false;
 			topThurster.Stop();
-		}
+        }
+
+        if (Input.GetButton("Jump"))
+        {
+            if (!goForward)
+            {
+                goForward = true;
+                backThurster.Play();
+            }
+        }
+        else if (goForward)
+        {
+            goForward = false;
+            backThurster.Stop();
+        }
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Speed += 15;
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            Speed -= 15;
+        }
 
 		/*if(Input.GetButtonDown("Jump")){
 			ApplyThrust(transform.up, THRUST_FORCE * 20f);

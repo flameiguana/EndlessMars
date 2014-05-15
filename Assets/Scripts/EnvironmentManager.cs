@@ -8,6 +8,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject player;
 
     public GameObject obstacle1;
+    public GameObject shield;
 
 	public List<GameObject> obstaclesAndRamps = new List<GameObject>(); 
 
@@ -34,6 +35,8 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject beam;
 
     int spawnRamp;
+    float lastShield = 0;
+    public const float shieldSpawnDist = 1000f;
 
     public static EnvironmentManager s_instance = null;
     public static EnvironmentManager instance
@@ -124,9 +127,6 @@ public class EnvironmentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         //Obstacles
         for (int i = 0; i < obstacleList.Count; i++)
         {
@@ -168,6 +168,12 @@ public class EnvironmentManager : MonoBehaviour
                 rampList.Remove(rampList[i]);
                 temp.transform.position = new Vector3(horX, temp.transform.position.y, temp.transform.position.z + 800);
                 rampList.Add(temp);
+
+                if (temp.transform.position.z > lastShield + shieldSpawnDist)
+                {
+                    Instantiate(shield, new Vector3(horX, 4, temp.transform.position.z + 4f), Quaternion.identity);
+                    lastShield = Mathf.Round(temp.transform.position.z / shieldSpawnDist) * shieldSpawnDist;
+                }
 			}
 			else
 			{
