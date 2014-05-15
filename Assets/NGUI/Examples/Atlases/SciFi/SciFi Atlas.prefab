@@ -49,14 +49,14 @@ MonoBehaviour:
   - name: Dark
     outer:
       serializedVersion: 2
-      x: 370
-      y: 936
+      x: 979
+      y: 2012
       width: 15
       height: 15
     inner:
       serializedVersion: 2
-      x: 374
-      y: 940
+      x: 983
+      y: 2016
       width: 7
       height: 7
     rotated: 0
@@ -67,14 +67,14 @@ MonoBehaviour:
   - name: Button
     outer:
       serializedVersion: 2
-      x: 393
-      y: 1011
+      x: 995
+      y: 2014
       width: 13
       height: 13
     inner:
       serializedVersion: 2
-      x: 397
-      y: 1015
+      x: 999
+      y: 2018
       width: 5
       height: 5
     rotated: 0
@@ -85,14 +85,14 @@ MonoBehaviour:
   - name: Highlight
     outer:
       serializedVersion: 2
-      x: 370
-      y: 952
+      x: 961
+      y: 2012
       width: 17
       height: 15
     inner:
       serializedVersion: 2
-      x: 373
-      y: 955
+      x: 964
+      y: 2015
       width: 11
       height: 9
     rotated: 0
@@ -103,14 +103,14 @@ MonoBehaviour:
   - name: Light
     outer:
       serializedVersion: 2
-      x: 370
-      y: 985
+      x: 984
+      y: 2030
       width: 18
       height: 18
     inner:
       serializedVersion: 2
-      x: 372
-      y: 987
+      x: 986
+      y: 2032
       width: 14
       height: 14
     rotated: 0
@@ -121,14 +121,14 @@ MonoBehaviour:
   - name: X
     outer:
       serializedVersion: 2
-      x: 370
-      y: 1004
+      x: 961
+      y: 2028
       width: 22
       height: 20
     inner:
       serializedVersion: 2
-      x: 370
-      y: 1004
+      x: 961
+      y: 2028
       width: 22
       height: 20
     rotated: 0
@@ -140,13 +140,13 @@ MonoBehaviour:
     outer:
       serializedVersion: 2
       x: 257
-      y: 936
+      y: 1026
       width: 112
       height: 88
     inner:
       serializedVersion: 2
       x: 258
-      y: 937
+      y: 1027
       width: 110
       height: 86
     rotated: 0
@@ -157,14 +157,14 @@ MonoBehaviour:
   - name: Font - Normal
     outer:
       serializedVersion: 2
-      x: 0
-      y: 255
+      x: 257
+      y: 1191
       width: 256
       height: 256
     inner:
       serializedVersion: 2
-      x: 0
-      y: 255
+      x: 257
+      y: 1191
       width: 256
       height: 256
     rotated: 0
@@ -176,13 +176,13 @@ MonoBehaviour:
     outer:
       serializedVersion: 2
       x: 0
-      y: 512
+      y: 935
       width: 256
       height: 512
     inner:
       serializedVersion: 2
       x: 0
-      y: 512
+      y: 935
       width: 256
       height: 512
     rotated: 0
@@ -193,14 +193,14 @@ MonoBehaviour:
   - name: NGUI
     outer:
       serializedVersion: 2
-      x: 0
-      y: 179
+      x: 257
+      y: 1115
       width: 255
       height: 75
     inner:
       serializedVersion: 2
-      x: 0
-      y: 179
+      x: 257
+      y: 1115
       width: 255
       height: 75
     rotated: 0
@@ -211,16 +211,34 @@ MonoBehaviour:
   - name: dim
     outer:
       serializedVersion: 2
-      x: 370
-      y: 968
+      x: 1003
+      y: 2032
       width: 16
       height: 16
     inner:
       serializedVersion: 2
-      x: 370
-      y: 968
+      x: 1003
+      y: 2032
       width: 16
       height: 16
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: title_screen
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 1448
+      width: 960
+      height: 600
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 1448
+      width: 960
+      height: 600
     rotated: 0
     paddingLeft: 0
     paddingRight: 0
