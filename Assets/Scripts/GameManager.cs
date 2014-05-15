@@ -67,5 +67,4 @@ public class GameManager : MonoBehaviour {
 		SetPauseState(paused);
 		PausePanel.gameObject.SetActive(paused);
 	}
-
 }

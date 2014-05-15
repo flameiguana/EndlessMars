@@ -2163,7 +2163,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 2, y: 2}
+      scale: {x: 1, y: 1}
       generateAllOutputs: 1
       animationUpdateRate: 0
     materialProperties:
@@ -2173,16 +2173,16 @@ SubstanceImporter:
           first:
             name: _MainTex
           second:
-            texture: {instanceID: 0}
-            scale: {x: 2, y: 2}
+            texture: {fileID: 2800000, guid: efb799ce9da7da140850141714e8af9d, type: 3}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _BumpMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 2, y: 2}
-            offset: {x: 90, y: 0}
+            scale: {x: 1, y: 1}
+            offset: {x: 0, y: 0}
       floats:
         data:
           first:

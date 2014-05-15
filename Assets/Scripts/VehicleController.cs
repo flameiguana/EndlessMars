@@ -10,6 +10,8 @@ public class VehicleController : MonoBehaviour {
 
 
 	public ParticleSystem leftThruster;
+    public ParticleSystem leftFrontThruster;
+    public ParticleSystem rightFrontThruster;
 	public ParticleSystem rightThruster;
 	public ParticleSystem topThurster;
 
@@ -32,28 +34,33 @@ public class VehicleController : MonoBehaviour {
 	
 	void Update () {
 
-        Speed += 0.01f;
+        Speed += Time.deltaTime * 0.5f;
 		//Change thruster state based on input.
 		if(Input.GetButton("Left")){
 			if(!goLeft){
 				goLeft = true; 
 				//To go left use right thruster and vice versa
 				rightThruster.Play();
+                rightFrontThruster.Play();
 			}
 		}
 		else if(UseThrust && goLeft){
 			goLeft = false;
 			rightThruster.Stop();
+            rightFrontThruster.Stop();
 		}
 		if(Input.GetButton("Right")){
 			if(!goRight){
 				goRight = true;
 				leftThruster.Play();
+                leftFrontThruster.Play();
+                
 			}
 		}
 		else if(UseThrust && goRight){
 			goRight = false;
 			leftThruster.Stop();
+            leftFrontThruster.Stop();
 		}
 
 		if(Input.GetButton("Down")){

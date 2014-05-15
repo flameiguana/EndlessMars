@@ -5,6 +5,8 @@ public class CollisionHandler : MonoBehaviour
 {
 	public bool shielded;
 	Shield currentShield;
+    public GameObject explosion;
+
 
 	public void GiveShield(Shield shield){
 		shield.transform.parent = transform;
@@ -24,8 +26,6 @@ public class CollisionHandler : MonoBehaviour
             float width = other.gameObject.renderer.bounds.size.x;
 
 
-
-
 			if(EnvironmentManager.instance != null){
 				EnvironmentManager.instance.obstacleList.Remove(other.gameObject);
 				Destroy(other.gameObject);
@@ -36,6 +36,7 @@ public class CollisionHandler : MonoBehaviour
 
 			if(!shielded){
 				if(onDeath != null){
+                    GameObject currentExplosion = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
 					onDeath(gameObject);
 				}
 			}
