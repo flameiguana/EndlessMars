@@ -67,7 +67,7 @@ public class EnvironmentManager : MonoBehaviour
 			int scaleY = Random.Range(2, 5);
 			if(i % 20 == 0)
 			{
-				rampList.Add((GameObject)Instantiate(ramp, new Vector3(horX, -.2f, i * 10), ramp.transform.rotation));
+				rampList.Add((GameObject)Instantiate(ramp, new Vector3(horX, 0.4f, i * 10), ramp.transform.rotation));
 				//ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y - 5, ramp.transform.position.z);
 			}
 			else
@@ -81,13 +81,14 @@ public class EnvironmentManager : MonoBehaviour
 
         for (int i = 0; i <= 6; i++)
         {
-            groundList.Add((GameObject)Instantiate(ground, new Vector3(0, 0, i * ground.renderer.bounds.size.z), transform.rotation));
+            groundList.Add((GameObject)Instantiate(ground, new Vector3(0, .5f, i * ground.renderer.bounds.size.z), transform.rotation));
 
         }
         for (int i = 0; i <= 6; i++)
         {
             wallList.Add((GameObject)Instantiate(wall, new Vector3(-12f, 10, i * wall.renderer.bounds.size.z), wall.transform.rotation));
             wallList.Add((GameObject)Instantiate(wall, new Vector3(12f, 10, i * wall.renderer.bounds.size.z), wall.transform.rotation));
+            wall.transform.localScale = new Vector3(20, 1, 50); 
         }
 
         /*for (int i = 1; i <= 1000; i++)
@@ -137,12 +138,13 @@ public class EnvironmentManager : MonoBehaviour
                 horX = horX * 2;
                 GameObject temp = obstacleList[i];
                 obstacleList.Remove(obstacleList[i]);
-                temp.transform.position = new Vector3(horX, temp.transform.position.y, temp.transform.position.z + 800);
+                temp.transform.position = new Vector3(horX, 1, temp.transform.position.z + 800);
                 float scaleY = Random.Range(1, 5);
                 scaleY = player.transform.position.z / 800 + Random.Range(5, 3);
                 temp.transform.localScale = new Vector3(2, scaleY, 2);
                 obstacleList.Add(temp);
-                
+
+
                 //CreateObstacle();
                 //obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
             }
@@ -209,7 +211,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             if (player.transform.position.z - OFFSET > groundList[i].transform.position.z + groundList[i].renderer.bounds.size.z / 2)
             {
-                groundList.Add((GameObject)Instantiate(ground, new Vector3(0, 0, groundList[groundList.Count - 1].renderer.bounds.size.z + groundList[groundList.Count - 1].transform.position.z), transform.rotation));
+                groundList.Add((GameObject)Instantiate(ground, new Vector3(0, .5f, groundList[groundList.Count - 1].renderer.bounds.size.z + groundList[groundList.Count - 1].transform.position.z), transform.rotation));
 
                 Destroy(groundList[i]);
                 groundList.Remove(groundList[i]);
@@ -226,6 +228,7 @@ public class EnvironmentManager : MonoBehaviour
             if (player.transform.position.z - OFFSET > wallList[i].transform.position.z + wallList[i].renderer.bounds.size.z / 2)
             {
                 wallList.Add((GameObject)Instantiate(wall, new Vector3(-12f, 10, wallList[wallList.Count - 1].renderer.bounds.size.z + wallList[wallList.Count - 1].transform.position.z), wall.transform.rotation));
+                wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 10000, 1, 50); 
                 wallList.Add((GameObject)Instantiate(wall, new Vector3(12f, 10, wallList[wallList.Count - 2].renderer.bounds.size.z + wallList[wallList.Count - 2].transform.position.z), wall.transform.rotation));
                 Destroy(wallList[i]);
                 wallList.Remove(wallList[i]);
@@ -256,7 +259,7 @@ public class EnvironmentManager : MonoBehaviour
         horX = horX * 2;
         float scaleY = Random.Range(1, 5);
 		scaleY = player.transform.position.z / 1000 + Random.Range (1, 3);
-        obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, (int)player.transform.position.z + 800), transform.rotation));
+        obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 0, (int)player.transform.position.z + 800), transform.rotation));
         obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
     }
 }
