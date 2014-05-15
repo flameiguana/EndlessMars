@@ -45,5 +45,27 @@ public class CollisionHandler : MonoBehaviour
 				currentShield = null;
 			}
         }
+
+		if (other.gameObject.tag == "CrossBeam")
+		{
+			float xDistance = Mathf.Abs(transform.position.x - other.transform.position.x);
+			float width = other.gameObject.renderer.bounds.size.x;
+
+			EnvironmentManager.instance.crossBeam.Remove(other.gameObject);
+			Destroy(other.gameObject);
+			EnvironmentManager.instance.CreateObstacle();
+			
+			if(!shielded){
+				if(onDeath != null){
+					onDeath(gameObject);
+				}
+			}
+			else {
+				Destroy (currentShield.gameObject);
+				shielded = false;
+				currentShield = null;
+			}
+		}
+
     }
 }
