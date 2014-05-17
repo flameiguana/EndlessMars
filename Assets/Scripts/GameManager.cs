@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
 
 		BestDistance.text = ScoreManager.instance.bestScore.ToString();
 		CurrentDistance.text = ScoreManager.instance.currentScore.ToString();
+		ScoreManager.instance.SubmitScore();
 
 		gameOverPanel.gameObject.SetActive(true);
 	}

@@ -18,6 +18,10 @@ public class ScoreManager : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 	}
 
+	public void LoadScore(){
+
+	}
+
 	public void UpdateScore(float distanceTraveled){
 		int score = (int)distanceTraveled;
 		if(score > bestScore)
@@ -26,7 +30,6 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	public void SubmitScore(){
-
+		KongregateAPI.instance.SubmitStats("Distance", currentScore);
 	}
-
 }
