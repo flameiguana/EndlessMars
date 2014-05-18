@@ -10,7 +10,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject obstacle1;
     public GameObject shield;
 
-	public List<GameObject> obstaclesAndRamps = new List<GameObject>(); 
+	//public List<GameObject> obstaclesAndRamps = new List<GameObject>(); 
 
 
     public List<GameObject> obstacleList = new List<GameObject>();
@@ -33,6 +33,10 @@ public class EnvironmentManager : MonoBehaviour
 
     public List<GameObject> crossBeam = new List<GameObject>();
     public GameObject beam;
+
+
+    public List<GameObject> starList = new List<GameObject>();
+    public GameObject star;
 
     int spawnRamp;
     float lastShield = 0;
@@ -66,6 +70,7 @@ public class EnvironmentManager : MonoBehaviour
 		for (int i = 10; i < STARTCOUNT; i++)
 		{
 			float horX = Random.Range(-5, 6);
+            
 			horX = horX * 2;
 			int scaleY = Random.Range(2, 5);
 			if(i % 20 == 0)
@@ -75,11 +80,21 @@ public class EnvironmentManager : MonoBehaviour
 			}
 			else
 			{
-				obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, i * 10), transform.rotation));
-				obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
-			}
 
+                obstacle1.transform.localScale = new Vector3(2, scaleY, 2);
+				obstacleList.Add((GameObject)Instantiate(obstacle1, new Vector3(horX, 1, i * 10), transform.rotation));
+				
+			}
 		}
+
+        //Stars
+        for (int i = 10; i < 500; i++)
+        {
+            float horX = Random.Range(-40, 40);
+            float height = Random.Range(25, 30);
+           // star.transform.localScale = new Vector3(2, scaleY, 2);
+            starList.Add((GameObject)Instantiate(star, new Vector3(horX, height, i), transform.rotation));
+        }
 
 
         for (int i = 0; i <= 6; i++)
@@ -107,17 +122,18 @@ public class EnvironmentManager : MonoBehaviour
             float Xpos = 0;
             if (side == 0)
             {
-                Xpos = -12;
+                Xpos = -11.6f;
             }
             else 
             {
-                Xpos = 12;
+                Xpos = 11.6f;
             }
             float horY = Random.Range(3, 10);
 
+            float scaleX = Random.Range(3, 6);
+            beam.transform.localScale = new Vector3(scaleX, 1, 1);
             crossBeam.Add((GameObject)Instantiate(beam, new Vector3(Xpos, horY, i * 50), beam.transform.rotation));
-			float scaleX = Random.Range(3, 6);
-			beam.transform.localScale = new Vector3(scaleX , 1, 1);
+			
         }
 
 
@@ -152,9 +168,36 @@ public class EnvironmentManager : MonoBehaviour
             {
                 break;
             }
+        }
 
-            
 
+        //Stars
+        for (int i = 0; i < starList.Count; i++)
+        {
+            if (player.transform.position.z - OFFSET > starList[i].transform.position.z)
+            {
+                float horX = Random.Range(-40, 40);
+                //horX = horX * 2;
+
+               // wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 20000, 1, 50); 
+                float height = player.transform.position.z/7000 + Random.Range(25, 30);
+
+                GameObject temp = starList[i];
+                starList.Remove(starList[i]);
+                temp.transform.position = new Vector3(horX, height, temp.transform.position.z + 490);
+                //float scaleY = Random.Range(1, 5);
+                //scaleY = player.transform.position.z / 800 + Random.Range(5, 3);
+                //temp.transform.localScale = new Vector3(2, scaleY, 2);
+                starList.Add(temp);
+
+
+                //CreateObstacle();
+                //obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
+            }
+            else
+            {
+                break;
+            }
         }
 
 		//Ramps
@@ -192,11 +235,11 @@ public class EnvironmentManager : MonoBehaviour
                 float Xpos = 0;
                 if (side == 0)
                 {
-                    Xpos = -12;
+                    Xpos = -11.6f;
                 }
                 else
                 {
-                    Xpos = 12;
+                    Xpos = 11.6f;
                 }
                 float horY = Random.Range(3, 15);
                 crossBeam.Add((GameObject)Instantiate(beam, new Vector3(Xpos, horY, player.transform.position.z + 500), beam.transform.rotation));
@@ -234,7 +277,7 @@ public class EnvironmentManager : MonoBehaviour
             if (player.transform.position.z - OFFSET > wallList[i].transform.position.z + wallList[i].renderer.bounds.size.z / 2)
             {
                 wallList.Add((GameObject)Instantiate(wall, new Vector3(-12f, 10, wallList[wallList.Count - 1].renderer.bounds.size.z + wallList[wallList.Count - 1].transform.position.z), wall.transform.rotation));
-                wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 10000, 1, 50); 
+                wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 20000, 1, 50); 
                 wallList.Add((GameObject)Instantiate(wall, new Vector3(12f, 10, wallList[wallList.Count - 2].renderer.bounds.size.z + wallList[wallList.Count - 2].transform.position.z), wall.transform.rotation));
                 Destroy(wallList[i]);
                 wallList.Remove(wallList[i]);
