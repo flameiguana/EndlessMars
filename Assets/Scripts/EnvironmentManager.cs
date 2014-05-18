@@ -214,7 +214,7 @@ public class EnvironmentManager : MonoBehaviour
 
                 if (temp.transform.position.z > lastShield + shieldSpawnDist)
                 {
-                    Instantiate(shield, new Vector3(horX, 4, temp.transform.position.z + 4f), Quaternion.identity);
+                    Instantiate(shield, new Vector3(horX, 4, temp.transform.position.z + 4f), shield.transform.rotation);
                     lastShield = Mathf.Round(temp.transform.position.z / shieldSpawnDist) * shieldSpawnDist;
                 }
 			}
