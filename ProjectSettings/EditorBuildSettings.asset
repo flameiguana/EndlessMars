@@ -11,3 +11,7 @@ EditorBuildSettings:
     path: Assets/dkharley_scene.unity
   - enabled: 1
     path: Assets/Detonator Explosion Framework/TestScene/Detonator-TestWall.unity
+  - enabled: 1
+    path: Assets/ControlInfo.unity
+  - enabled: 1
+    path: Assets/Credits.unity

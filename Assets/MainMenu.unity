@@ -710,6 +710,7 @@ GameObject:
   - 65: {fileID: 711246405}
   - 114: {fileID: 711246404}
   - 114: {fileID: 711246403}
+  - 114: {fileID: 711246406}
   m_Layer: 9
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -771,6 +772,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 120, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &711246406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 711246401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bce7bd48616ca94ea907422fb5acbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: Credits
 --- !u!1 &750037403
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +905,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1086866920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.50000006, y: .5, z: 0}
+  m_LocalPosition: {x: -.62500006, y: .62500006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1342526420}
@@ -927,6 +940,7 @@ GameObject:
   - 65: {fileID: 1195470810}
   - 114: {fileID: 1195470809}
   - 114: {fileID: 1195470808}
+  - 114: {fileID: 1195470811}
   m_Layer: 9
   m_Name: InfoButton
   m_TagString: Untagged
@@ -988,6 +1002,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 120, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1195470811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1195470806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bce7bd48616ca94ea907422fb5acbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: ControlInfo
 --- !u!1 &1257746014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,11 +1182,11 @@ MonoBehaviour:
     e00: 300
     e01: 0
     e02: 0
-    e03: .50000006
+    e03: .62500006
     e10: 0
     e11: 300
     e12: 0
-    e13: -.5
+    e13: -.62500006
     e20: 0
     e21: 0
     e22: 300
