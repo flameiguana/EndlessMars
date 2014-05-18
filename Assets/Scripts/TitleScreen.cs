@@ -10,12 +10,12 @@ public class TitleScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		UIEventListener.Get(PlayButton).onPress += PlayButtonPress;
+		UIEventListener.Get(PlayButton).onClick += PlayButtonPress;
 	}
 
-	void PlayButtonPress(GameObject button, bool isDown){
-		if(isDown)
-			return;
+	void PlayButtonPress(GameObject button){
+		//if(isDown)
+		//	return;
 		Application.LoadLevel(1);
 	}
 

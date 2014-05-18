@@ -5,9 +5,7 @@ public class ChangeSceneButton : MonoBehaviour {
 
 	public string level;
 
-	void OnPress(bool isDown){
-		if(!isDown){
+	void OnClick(){
 			Application.LoadLevel(level);
-		}
 	}
 }

@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34583148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 116, y: 27, z: 0}
+  m_LocalPosition: {x: 116.000008, y: 61.1018219, z: 0}
   m_LocalScale: {x: 40, y: 40, z: .999899983}
   m_Children: []
   m_Father: {fileID: 1410987068}
@@ -258,6 +258,62 @@ Transform:
   m_Children:
   - {fileID: 1410987068}
   m_Father: {fileID: 1502151330}
+--- !u!1 &441890956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441890957}
+  - 114: {fileID: 441890958}
+  m_Layer: 9
+  m_Name: Label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441890957
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441890956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -137, y: -137, z: 0}
+  m_LocalScale: {x: 40, y: 40, z: .999899983}
+  m_Children: []
+  m_Father: {fileID: 1410987068}
+--- !u!114 &441890958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441890956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mDepth: 6
+  mFont: {fileID: 11400000, guid: c1787e3a4f88e6246847de45583036a7, type: 2}
+  mText: 'Music: DST'
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mPassword: 0
+  mShowLastChar: 0
+  mEffectStyle: 0
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mShrinkToFit: 0
+  mLineWidth: 0
+  mMultiline: 1
 --- !u!1001 &502642168
 Prefab:
   m_ObjectHideFlags: 0
@@ -368,7 +424,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 650048637}
   - 114: {fileID: 650048639}
-  - 114: {fileID: 650048638}
   m_Layer: 9
   m_Name: UI Root (2D)
   m_TagString: Untagged
@@ -388,21 +443,6 @@ Transform:
   m_Children:
   - {fileID: 1502151330}
   m_Father: {fileID: 0}
---- !u!114 &650048638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400032, guid: 291af42c733f42f4eb2b1d20bdeeae0f,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 650048636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 721ce4c601ef55143993fc7587a598e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayButton: {fileID: 1091768352}
-  CreditsButton: {fileID: 0}
-  InfoButton: {fileID: 0}
 --- !u!114 &650048639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +532,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1036001648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.000008, y: -136.223099, z: 0}
+  m_LocalPosition: {x: 117.000015, y: -69.7245636, z: 0}
   m_LocalScale: {x: 40, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 1410987068}
@@ -697,7 +737,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1112233817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -181, y: 103, z: 0}
+  m_LocalPosition: {x: -181, y: 123.461105, z: 0}
   m_LocalScale: {x: 40, y: 40, z: .999899983}
   m_Children: []
   m_Father: {fileID: 1410987068}
@@ -811,6 +851,7 @@ Transform:
   - {fileID: 34583149}
   - {fileID: 1432724830}
   - {fileID: 1112233818}
+  - {fileID: 441890957}
   - {fileID: 1091768353}
   m_Father: {fileID: 384786765}
 --- !u!114 &1410987069
@@ -876,7 +917,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1432724829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -96, y: -58, z: 0}
+  m_LocalPosition: {x: -96.0000076, y: -1.73197889, z: 0}
   m_LocalScale: {x: 40, y: 40, z: .999899983}
   m_Children: []
   m_Father: {fileID: 1410987068}
