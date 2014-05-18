@@ -90,10 +90,8 @@ public class EnvironmentManager : MonoBehaviour
         //Stars
         for (int i = 10; i < 500; i++)
         {
-            float horX = Random.Range(-30, 30);
-            float height = Random.Range(19, 25);
-
-            int scaleY = Random.Range(2, 5);
+            float horX = Random.Range(-40, 40);
+            float height = Random.Range(25, 30);
            // star.transform.localScale = new Vector3(2, scaleY, 2);
             starList.Add((GameObject)Instantiate(star, new Vector3(horX, height, i), transform.rotation));
         }
@@ -178,11 +176,11 @@ public class EnvironmentManager : MonoBehaviour
         {
             if (player.transform.position.z - OFFSET > starList[i].transform.position.z)
             {
-                float horX = Random.Range(-30, 30);
+                float horX = Random.Range(-40, 40);
                 //horX = horX * 2;
 
                // wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 20000, 1, 50); 
-                float height = player.transform.position.z/10000 + Random.Range(19, 25);
+                float height = player.transform.position.z/7000 + Random.Range(25, 30);
 
                 GameObject temp = starList[i];
                 starList.Remove(starList[i]);
