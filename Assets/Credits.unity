@@ -936,7 +936,7 @@ MonoBehaviour:
   mPivot: 4
   mDepth: 6
   mFont: {fileID: 11400000, guid: c1787e3a4f88e6246847de45583036a7, type: 2}
-  mText: Leiland Dawson
+  mText: Leland Dawson
   mMaxLineWidth: 0
   mMaxLineHeight: 0
   mEncoding: 1

@@ -41,6 +41,9 @@ public class KongregateAPI : MonoBehaviour
 
     void Awake()
     {
+
+		s_instance = this;
+
         DontDestroyOnLoad(gameObject);
 
         Application.ExternalEval(

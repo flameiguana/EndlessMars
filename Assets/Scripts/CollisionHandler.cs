@@ -67,6 +67,7 @@ public class CollisionHandler : MonoBehaviour
 			
 			if(!shielded){
 				if(onDeath != null){
+					GameObject currentExplosion = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
 					onDeath(gameObject);
 				}
 			}
