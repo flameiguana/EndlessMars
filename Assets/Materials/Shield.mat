@@ -29,7 +29,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Detail
+          name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -43,7 +43,7 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ParallaxMap
+          name: _Detail
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -55,8 +55,12 @@ Material:
         second: .078125
       data:
         first:
-          name: _SoftParticlesFactor
-        second: 3
+          name: _Parallax
+        second: .0199999996
+      data:
+        first:
+          name: _Strength
+        second: 5
       data:
         first:
           name: _Inside
@@ -75,17 +79,13 @@ Material:
         second: 2.28571439
       data:
         first:
-          name: _Strength
-        second: 5
-      data:
-        first:
-          name: _Parallax
-        second: .0199999996
+          name: _SoftParticlesFactor
+        second: 3
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .108131498, g: .605536163, b: .735294104, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _SpecColor
