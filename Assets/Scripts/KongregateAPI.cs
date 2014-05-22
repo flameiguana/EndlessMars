@@ -42,6 +42,12 @@ public class KongregateAPI : MonoBehaviour
     void Awake()
     {
 
+        if(s_instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        
 		s_instance = this;
 
         DontDestroyOnLoad(gameObject);
