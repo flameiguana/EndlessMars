@@ -40,7 +40,9 @@ public class EnvironmentManager : MonoBehaviour
 
     int spawnRamp;
     float lastShield = 0;
-    public const float shieldSpawnDist = 1000f;
+    GameObject lastObstacle;
+    GameObject lastRamp;
+    public const float shieldSpawnDist = 2000f;
 
     public static EnvironmentManager s_instance = null;
     public static EnvironmentManager instance
@@ -75,8 +77,9 @@ public class EnvironmentManager : MonoBehaviour
 			int scaleY = Random.Range(2, 5);
 			if(i % 20 == 0)
 			{
-				rampList.Add((GameObject)Instantiate(ramp, new Vector3(horX, 0.4f, i * 10), ramp.transform.rotation));
-				//ramp.transform.position = new Vector3(ramp.transform.position.x, ramp.transform.position.y - 5, ramp.transform.position.z);
+                GameObject temp = (GameObject)Instantiate(ramp, new Vector3(horX, 0.4f, i * 10), ramp.transform.rotation);
+				rampList.Add(temp);
+                lastRamp = temp;
 			}
 			else
 			{
@@ -128,9 +131,9 @@ public class EnvironmentManager : MonoBehaviour
             {
                 Xpos = 11.6f;
             }
-            float horY = Random.Range(3, 10);
+            float horY = Random.Range(5, 10);
 
-            float scaleX = Random.Range(3, 6);
+            float scaleX = Random.Range(2, 3);
             beam.transform.localScale = new Vector3(scaleX, 1, 1);
             crossBeam.Add((GameObject)Instantiate(beam, new Vector3(Xpos, horY, i * 50), beam.transform.rotation));
 			
@@ -148,18 +151,29 @@ public class EnvironmentManager : MonoBehaviour
         {
             if (player.transform.position.z - OFFSET > obstacleList[i].transform.position.z)
             {
+                GameObject temp = obstacleList[i];
+                float nextZ = temp.transform.position.z + 800;
+
                 //spawnRamp++;
                 //Destroy(obstacleList[i]);
                 float horX = Random.Range(-5, 6);
                 horX = horX * 2;
-                GameObject temp = obstacleList[i];
+
+                // distance before spawning an obstacle passed a ramp
+                float zSafeWake = 10 * (5);
+                while (nextZ < lastRamp.transform.position.z + zSafeWake && Mathf.Abs(lastRamp.transform.position.x - horX) < 4)
+                {
+                    horX = Random.Range(-5, 6);
+                    horX = horX * 2;
+                }
+
                 obstacleList.Remove(obstacleList[i]);
                 temp.transform.position = new Vector3(horX, 1, temp.transform.position.z + 800);
                 float scaleY = Random.Range(1, 5);
                 scaleY = player.transform.position.z / 800 + Random.Range(5, 3);
                 temp.transform.localScale = new Vector3(2, scaleY, 2);
                 obstacleList.Add(temp);
-
+                lastObstacle = temp;
 
                 //CreateObstacle();
                 //obstacleList.Add ((GameObject)Instantiate(obstacle1, new Vector3(0, 0, player.transform.position.z + 100), transform.rotation)); 
@@ -204,10 +218,22 @@ public class EnvironmentManager : MonoBehaviour
 		for (int i = 0; i < rampList.Count; i++)
 		{
 			if (player.transform.position.z - OFFSET > rampList[i].transform.position.z)
-			{
+            {
+                GameObject temp = rampList[i];
+                float nextZ = temp.transform.position.z + 800;
+
                 float horX = Random.Range(-5, 6);
                 horX = horX * 2;
-                GameObject temp = rampList[i];
+
+                // note the zSafeWake for obstacles won't work past a single obstacle, should fix
+                // distance before spawning a ramp passed an obstacle
+                float zSafeWake = 10 * (3);
+                while (nextZ < lastObstacle.transform.position.z + zSafeWake && Mathf.Abs(lastObstacle.transform.position.x - horX) < 4)
+                {
+                    horX = Random.Range(-5, 6);
+                    horX = horX * 2;
+                }
+
                 rampList.Remove(rampList[i]);
                 temp.transform.position = new Vector3(horX, temp.transform.position.y, temp.transform.position.z + 800);
                 rampList.Add(temp);
@@ -217,6 +243,7 @@ public class EnvironmentManager : MonoBehaviour
                     Instantiate(shield, new Vector3(horX, 4, temp.transform.position.z + 4f), shield.transform.rotation);
                     lastShield = Mathf.Round(temp.transform.position.z / shieldSpawnDist) * shieldSpawnDist;
                 }
+                lastRamp = temp;
 			}
 			else
 			{
@@ -241,9 +268,9 @@ public class EnvironmentManager : MonoBehaviour
                 {
                     Xpos = 11.6f;
                 }
-                float horY = Random.Range(3, 15);
+                float horY = Random.Range(5, 15);
                 crossBeam.Add((GameObject)Instantiate(beam, new Vector3(Xpos, horY, player.transform.position.z + 500), beam.transform.rotation));
-				float scaleX = Random.Range(3, 10);
+				float scaleX = Random.Range(3, 5);
 				scaleX += player.transform.position.z / 900;
 				beam.transform.localScale = new Vector3(scaleX , 1, 1);
                
@@ -276,9 +303,11 @@ public class EnvironmentManager : MonoBehaviour
         {
             if (player.transform.position.z - OFFSET > wallList[i].transform.position.z + wallList[i].renderer.bounds.size.z / 2)
             {
-                wallList.Add((GameObject)Instantiate(wall, new Vector3(-12f, 10, wallList[wallList.Count - 1].renderer.bounds.size.z + wallList[wallList.Count - 1].transform.position.z), wall.transform.rotation));
-                wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 20000, 1, 50); 
-                wallList.Add((GameObject)Instantiate(wall, new Vector3(12f, 10, wallList[wallList.Count - 2].renderer.bounds.size.z + wallList[wallList.Count - 2].transform.position.z), wall.transform.rotation));
+                // both walls have the same height
+                float wallZ = wallList[wallList.Count - 1].renderer.bounds.size.z + wallList[wallList.Count - 1].transform.position.z;
+                wallList.Add((GameObject)Instantiate(wall, new Vector3(-12f, 10, wallZ), wall.transform.rotation));
+                wall.transform.localScale = new Vector3(wall.transform.localScale.x + player.transform.position.z / 20000, 1, 50);
+                wallList.Add((GameObject)Instantiate(wall, new Vector3(12f, 10, wallZ), wall.transform.rotation));
                 Destroy(wallList[i]);
                 wallList.Remove(wallList[i]);
             }

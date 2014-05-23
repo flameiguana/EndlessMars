@@ -8,6 +8,8 @@ public class VehicleController : MonoBehaviour {
 	public bool UseThrust;
 	public bool ResetPos;
 
+    public const float BOOST = 20f;
+
 
 	public ParticleSystem leftThruster;
     public ParticleSystem leftFrontThruster;
@@ -35,7 +37,6 @@ public class VehicleController : MonoBehaviour {
 	// Update is called once per frame
 	
 	void Update () {
-
         Speed += Time.deltaTime * 0.35f;
 		//Change thruster state based on input.
 		if(Input.GetButton("Left")){
@@ -92,14 +93,37 @@ public class VehicleController : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Speed += 15;
+            Speed += BOOST;
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            Speed -= 15;
+            Speed -= BOOST;
         }
 
-		/*if(Input.GetButtonDown("Jump")){
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Speed += BOOST*6;
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            Speed -= BOOST*6;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            rigidbody.AddForce(0, 1000f, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Speed += BOOST * 6;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Speed -= BOOST * 6;
+        }
+#endif
+
+        /*if(Input.GetButtonDown("Jump")){
 			ApplyThrust(transform.up, THRUST_FORCE * 20f);
 		}*/
 
