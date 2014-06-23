@@ -45,7 +45,7 @@ public class FollowPlayer : MonoBehaviour {
 	void LateUpdate (){
 
 		if(target == null){
-			Debug.LogError("Target not set");
+			Debug.LogWarning("Target not set");
 			this.enabled = false;
 			return;
 		}

@@ -91,11 +91,11 @@ public class VehicleController : MonoBehaviour {
             backThurster.Stop();
         }
 
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if(Input.GetButtonDown("Boost"))
         {
             Speed += BOOST;
         }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetButtonUp("Boost"))
         {
             Speed -= BOOST;
         }
